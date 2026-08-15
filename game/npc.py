@@ -8,4 +8,4 @@ class Npcs:
         self.dialogue = dialogue
 
     def __str__(self):
-        return f"{self.name} ({', '.join(self.identity)}) - {self.sanity}, relationship: {self.relationship}"
+        return f"{self.name} ({', '.join(self.identity)}) - sanity: {self.sanity}, relationship: {self.relationship}"

@@ -7,13 +7,35 @@ def main():
     scenes = load_scenes()
     game = Game(player, scenes)
 
-    print(game.current_scene.name)
-    print(game.current_scene.description)
+    while True:
+        scene = game.current_scene
 
-    for npc in game.current_scene.npcs:
-        print(npc.name)
+        print()
+        print(scene.name)
+        print(scene.description)
 
-    print(game.current_scene)
+        if scene.npcs:
+            print("\nNPCs:")
+            for npc in scene.npcs:
+                print(npc.name)
+
+        if scene.items:
+            print("\nItems:")
+            for item in scene.items:
+                print(item.name)
+
+        print("\nChoices:")
+        for index, choice in enumerate(scene.choices):
+            print(f"{index}. {choice.text}")
+
+        user_input = input("Choose: ")
+
+        if user_input == "quit":
+            break
+
+        choice_index = int(user_input)
+        game.choose(choice_index)
+
 
 if __name__ == '__main__':
     main()
