@@ -17,7 +17,6 @@ class Game:
         if choice.item_to_add is not None:
             if choice.item_to_add not in self.player.inventory:
                 self.player.inventory.append(choice.item_to_add)
-            self.player.inventory.append(choice.item_to_add)
 
         if choice.sanity_delta != 0:
             self.player.sanity += choice.sanity_delta
