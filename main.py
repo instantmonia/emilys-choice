@@ -9,23 +9,36 @@ def main():
 
     while True:
         scene = game.current_scene
+        dialogue = game.current_dialogue
 
-        print()
-        print(scene.name)
-        print(scene.description)
+        if dialogue is not None:
+            print()
+            print(dialogue.npc_name)
+            print(dialogue.text)
+            choices = dialogue.choices
+        else:
+            print()
+            print(scene.name)
+            print(scene.description)
 
-        if scene.npcs:
-            print("\nNPCs:")
-            for npc in scene.npcs:
-                print(npc.name)
+            if scene.npcs:
+                print("\nNPCs:")
+                for npc in scene.npcs:
+                    print(npc.name)
 
-        if scene.items:
-            print("\nItems:")
-            for item in scene.items:
-                print(item.name)
+            if scene.items:
+                print("\nItems:")
+                for item in scene.items:
+                    print(item.name)
+
+            choices = scene.choices
+
+        if not choices:
+            print("\nThe scene ends here.")
+            break
 
         print("\nChoices:")
-        for index, choice in enumerate(scene.choices):
+        for index, choice in enumerate(choices):
             print(f"{index}. {choice.text}")
 
         user_input = input("Choose: ")
@@ -34,7 +47,12 @@ def main():
             break
 
         choice_index = int(user_input)
-        game.choose(choice_index)
+        response_text = game.choose(choice_index)
+
+        if response_text is not None and response_text != "":
+            print()
+            print(response_text)
+            input("\nPress Enter to continue...")
 
 
 if __name__ == '__main__':
