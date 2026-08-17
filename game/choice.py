@@ -1,7 +1,7 @@
 class Choice:
     def __init__(
             self,
-            text:str,
+            text:str = "Continue",
             target_scene:str = None,
             target_dialogue:str = None,
             item_to_add = None,

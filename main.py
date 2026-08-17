@@ -2,6 +2,27 @@ from game.player import Player
 from game.game import Game
 from data.scenes import load_scenes
 
+
+def get_choice_index(choices):
+    while True:
+        user_input = input("Choose: ")
+
+        if user_input == "quit":
+            return None
+
+        try:
+            choice_index = int(user_input)
+        except ValueError:
+            print("Please enter a number, or type 'quit' to exit.")
+            continue
+
+        if not (0 <= choice_index < len(choices)):
+            print(f"Please enter a number between 0 and {len(choices) - 1}.")
+            continue
+
+        return choice_index
+
+
 def main():
     player = Player()
     scenes = load_scenes()
@@ -41,12 +62,11 @@ def main():
         for index, choice in enumerate(choices):
             print(f"{index}. {choice.text}")
 
-        user_input = input("Choose: ")
+        choice_index = get_choice_index(choices)
 
-        if user_input == "quit":
+        if choice_index is None:
             break
 
-        choice_index = int(user_input)
         response_text = game.choose(choice_index)
 
         if response_text is not None and response_text != "":
