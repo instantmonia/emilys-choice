@@ -1,6 +1,6 @@
 from game.player import Player
 from game.game import Game
-from data.scenes import load_scenes
+from data.prologue import load_scenes
 
 
 def get_choice_index(choices):

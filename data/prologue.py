@@ -206,7 +206,9 @@ def load_scenes() -> dict[str, Scene]:
 
             "From the Prologue to Chapter 1": DialogueNode(
                 npc_name="Narration",
-                text="111"
+                text="Emily was one of the last few able-bodied children to remain at the monastery, taking care of the remaining sick and disabled children in the orphanage.  \n\n"
+                     "Gradually, the other orphans were sent away through various arrangements, allowing the overwhelmed monastery to finally catch its breath. \n\n"
+                     "But one night, everything changed…"
             )
         }
     )
