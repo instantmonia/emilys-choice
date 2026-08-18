@@ -1,6 +1,19 @@
 from game.player import Player
 from game.game import Game
 from data.prologue import load_scenes
+from llm.client import generate_text
+
+
+def get_dialogue_text(dialogue):
+    if dialogue.prompt is None:
+        return dialogue.text
+
+    print("\n(The story is being written...)")
+    try:
+        return generate_text(dialogue.prompt)
+    except Exception as error:
+        print(f"[Could not reach the AI, using the written text instead: {error}]")
+        return dialogue.text
 
 
 def get_choice_index(choices):
@@ -33,9 +46,10 @@ def main():
         dialogue = game.current_dialogue
 
         if dialogue is not None:
+            text = get_dialogue_text(dialogue)
             print()
             print(dialogue.npc_name)
-            print(dialogue.text)
+            print(text)
             choices = dialogue.choices
         else:
             print()

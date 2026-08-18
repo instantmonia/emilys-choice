@@ -82,7 +82,7 @@ def load_scenes() -> dict[str, Scene]:
             ),
             Choice(
                 text="Ignore it",
-                target_scene="Monastery Gate",
+                target_scene="Monastery Nave - At the Outbreak of War",
                 flags_delta=["ignored_oliver"]
             )
         ],
@@ -191,15 +191,26 @@ def load_scenes() -> dict[str, Scene]:
             ),
             "be1_adopted": DialogueNode(
                 npc_name="Narration",
-                # TODO: good part to link LLM
+                # Fallback text, shown when the AI cannot be reached.
                 text="Daniel says, \"May God watch over you, Emily, and guide you on the path ahead.\"\n\n "
                      "The adoptive family gave Emily a good life, and they spent many happy days together.\n\n "
                      "Unfortunately, the flames of war eventually reached their little home,\n\n "
-                     "and with it, the fate Emily might have changed was lost forever."
+                     "and with it, the fate Emily might have changed was lost forever.",
+                prompt=(
+                    "You are writing the closing narration of a gothic fantasy text adventure game.\n\n"
+                    "Story so far: Emily is an orphan raised at a monastery in the town of Saintfield. "
+                    "She was the first student from Saintfield ever accepted by the Belharis Academy of "
+                    "Astrology, but a vampire war broke out and enrollment was cancelled. Father Daniel "
+                    "offered her a place with an adoptive family far from the fighting, and she accepted, "
+                    "leaving behind both the monastery and her dream of studying the stars.\n\n"
+                    "Write a melancholy ending narration of 3 to 4 sentences: the quiet years she spends "
+                    "with the adoptive family, and how the war eventually reaches their home too. "
+                    "Third person, past tense. Output only the narration itself, no title or commentary."
+                )
             ),
             "be2_on the way": DialogueNode(
                 npc_name="Narration",
-                #TODO: good part to link LLM
+                #TODO: a good part to link LLM
                 text="The road to the capital was already overrun by vampires.\n\n "
                      "Emily never made it to the capital, falling along the way with her dreams left unfulfilled."
             ),
